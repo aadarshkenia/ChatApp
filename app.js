@@ -1,4 +1,5 @@
 var express = require('express');
+
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -9,6 +10,10 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,6 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Responding to user requests
 app.use('/', routes);
 app.use('/users', users);
 
@@ -31,6 +37,8 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
+
 
 // error handlers
 
@@ -54,6 +62,8 @@ app.use(function(err, req, res, next) {
     message: err.message,
     error: {}
   });
+  //NEW
+  next();
 });
 
 
@@ -63,12 +73,13 @@ module.exports = app;
 
 //NEW CODE : 20th JAN 2016
 
-app.get('/', function (req, res) {
-	res.send('Hello World!');
+//Socket.io integration
+io.on('connection', function(socket){
+	console.log('A user connected.');
 });
 
-app.listen(3000, function () {
+
+server.listen(3000, function () {
     console.log('Example app listening on port 3000!');
 });
-
 
