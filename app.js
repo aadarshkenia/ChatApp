@@ -76,6 +76,13 @@ module.exports = app;
 //Socket.io integration
 io.on('connection', function(socket){
 	console.log('A user connected.');
+	
+	//Broadcast a hello to everyone
+	io.emit('chat-message', "Hello and welcome here!");
+
+	socket.on('chat-message', function(msg){
+		console.log("Message received: "+msg);
+	});
 });
 
 
