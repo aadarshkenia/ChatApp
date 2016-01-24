@@ -46,11 +46,11 @@ app.use(function(req, res, next) {
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
+	res.status(err.status || 500);
+	res.render('error', {
+	  message: err.message,
+	  error: err
+	});
   });
 }
 
@@ -59,8 +59,8 @@ if (app.get('env') === 'development') {
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
-    message: err.message,
-    error: {}
+	message: err.message,
+	error: {}
   });
   //NEW
   next();
@@ -78,15 +78,17 @@ io.on('connection', function(socket){
 	console.log('A user connected.');
 	
 	//Broadcast a hello to everyone
-	io.emit('chat-message', "Hello and welcome here!");
+	//io.emit('chat-message', "Hello and welcome here!");
 
 	socket.on('chat-message', function(msg){
 		console.log("Message received: "+msg);
-	});
+	  	//Broadcast message to other clients
+	  	socket.broadcast.emit('chat-message', msg);
+  	});
 });
 
 
 server.listen(3000, function () {
-    console.log('Example app listening on port 3000!');
+	console.log('Example app listening on port 3000!');
 });
 

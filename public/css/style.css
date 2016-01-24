@@ -34,7 +34,7 @@ h1{
 	overflow: auto;
 	border: solid 2px rgba(0,0,0,0.5);	
 	border-radius: 20px;
-	padding: 10px; 
+	padding: 20px; 
 }
 
 li{
@@ -43,7 +43,6 @@ li{
 
 .bubble{
 	box-sizing: border-box;
-	float: left;
 	width: auto;
 	max-width: 80%;
 	position: relative;
@@ -52,10 +51,20 @@ li{
 	border: solid 1px rgba(0,0,0,0.5);
 	border-radius: 20px;
 
-	box-shadow: inset 0 8px 5px rgba(255,255,255,0.65), 0 1px 2px rgba(0,0,0,0.2);
+	
 	margin-bottom: 20px;
 	padding: 6px 20px;
 	color: #000;
 	text-shadow: 0 1px 1px rgba(255,255,255,0.8);
 	word-wrap: break-word;
+}
+
+.bubble-others{
+	background-color: #4cff4c;
+	float: left;
+}
+
+.bubble-self{
+	background-color: white;
+	float: right;
 }
