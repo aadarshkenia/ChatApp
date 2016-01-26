@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var login = require('./routes/login');
 
 var app = express();
 var server = require('http').Server(app);
@@ -30,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Responding to user requests
 app.use('/', routes);
 app.use('/users', users);
+app.use('/login', login);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -70,15 +72,9 @@ app.use(function(err, req, res, next) {
 module.exports = app;
 
 
-
-//NEW CODE : 20th JAN 2016
-
 //Socket.io integration
 io.on('connection', function(socket){
 	console.log('A user connected.');
-	
-	//Broadcast a hello to everyone
-	//io.emit('chat-message', "Hello and welcome here!");
 
 	socket.on('chat-message', function(msg){
 		console.log("Message received: "+msg);
