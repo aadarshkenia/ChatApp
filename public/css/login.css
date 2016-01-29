@@ -4,11 +4,12 @@ body {
     font-family: Montserrat;
 }
 
-.logo {
-    width: 213px;
-    height: 36px;
-    margin: 30px auto;
+h1.welcome{
+    text-align: center;
+    color: white;
+    padding: 10px 0 10px 0
 }
+
 
 .login-block {
     width: 320px;

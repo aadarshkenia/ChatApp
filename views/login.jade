@@ -9,9 +9,14 @@ html
 	body
 		block content
 
+		h1.welcome Welcome to Chatting Website!
 		div.logo
 			div.login-block
 				h1 Login
 				input(type="text" value="" placeholder="Username" id="username")
 				input(type="password" value="" placeholder="Password" id="password")
-				button submit
+				button(id="loginSubmitBtn") submit
+
+		script(src='/socket.io/socket.io.js')
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js')
+		script(src='/js/login.js')
